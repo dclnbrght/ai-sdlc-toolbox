@@ -1,2 +1,5 @@
-# ai-sdlc-toolbox
-A set of prompts, instructions and templates to power up your SDLC with AI agents
+# AI SDLC Toolbox
+
+** WORK IN PROGRESS**
+
+This toolbox contains a set of prompts, instructions and templates to power up your SDLC with AI agents.

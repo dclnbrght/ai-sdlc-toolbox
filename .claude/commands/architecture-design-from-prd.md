@@ -1,0 +1,1 @@
+run the prompt defined in /prompts/architecture-design.prompt.md
