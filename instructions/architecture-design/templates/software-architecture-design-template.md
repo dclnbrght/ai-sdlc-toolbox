@@ -20,7 +20,8 @@
   - [Architectural Concerns](#architectural-concerns)
   - [Current State Architecture](#current-state-architecture)
 - [Design Iterations](#design-iterations)
-  - [{{iteration number and title for each iteration}}]
+  - [{{iteration number and title for each iteration}}]  
+    - [{{option number and title for each option}}]
 - [Resources](#resources)
 
 ---
@@ -79,12 +80,12 @@
 
 ### Constraints
 
-{{ Extract all constraints from PRD (technical, business, organizational). Target: 0-5 constraints }}
+{{ Extract related constraints from the PRD (technical, business, organizational). Target: 0-5 constraints }}
 
 | Id | Constraint | Notes |
 |----|------------|-------|
 | CON-01 | {{ e.g., Must use existing database infrastructure }} | {{ Additional context }} |
-| CON-02 | {{ e.g., Development team has 3 engineers }} | {{ Impact on architecture }} |
+| CON-02 | {{ e.g., Development team has X engineers with Y skillset }} | {{ Impact on architecture }} |
 | CON-03 | {{ Constraint description }} | {{ Notes }} |
 
 ### Architectural Concerns
@@ -99,9 +100,7 @@
 
 ### Current State Architecture
 
-{{ If applicable: Describe existing systems, integrations, legacy components. Include diagrams if available. }}
-
-{{ Description of current system architecture, components, data flows, known issues, technical debt, etc. }}
+{{ If applicable: Describe existing systems, integrations, legacy components. Highlight known issues, technical debt or functional limitations. Include diagrams or links to documentation if available. }}
 
 ---
 
@@ -115,19 +114,33 @@
 
 {{ Clear statement of the architectural decision being made. Example: "Determine the high-level architecture pattern that will best support the system's scalability, maintainability, and team structure requirements." }}
 
-**Design Objectives Addressed:** {{ List which design objectives from above this iteration addresses }}
+#### Decision & Rationale
 
-<!-- EXTENDED MODE ONLY: Uncomment and complete the following section -->
-<!--
+{{ IMPORTANT: keep the decision section above the options for easy readability }}
+
+**Date:** {{ YYYY-MM-DD }}
+
+**Chosen Option:** {{ OPTION ID - e.g., OPT-1.1 }} - {{ Option Title }}
+
+**Rationale:**
+
+{{ Succinct explanation including the following where relevant }}
+
+{{ Extended Mode Sections Start }}
+
+{{ 
+Addtional Rationale:
+- How the chosen option satisfies quality attributes (reference specific QA-XX)
+- Key trade-offs and why they are acceptable
+- Alignment with design objectives
+}}
+
 #### System Elements in Scope
 
 **In Scope:** {{ List components, layers, or subsystems being designed in this iteration }}
 
 **Out of Scope:** {{ List what is explicitly not being addressed in this iteration }}
--->
 
-<!-- EXTENDED MODE ONLY: Uncomment and complete the following section -->
-<!--
 #### Design Inputs Review
 
 **Quality Attributes:**
@@ -143,12 +156,13 @@
 
 **Concerns:**
 - CRN-XX: {{ Concern description }}
--->
+
+{{ Extended Mode Sections End }}
 
 #### Option 1.1 - {{ Option Title }}
 
 {{ 
-Detailed description including:
+Description including the following where relevant:
 - Architecture pattern used (e.g., Microservices, Modular Monolith, Layered)
 - Major components and their responsibilities
 - Data flows between components
@@ -160,17 +174,12 @@ Don't include:
 
 **Architecture Diagram:**
 
-```mermaid
-graph TB
-    {{ Mermaid diagram here }}
-    {{ Use: Services (blue), Infrastructure (purple), Data Stores (green) }}
-```
+{{ MERMAID DIAGRAM }}
 
-<!-- EXTENDED MODE ONLY: Uncomment and complete the following sections -->
-<!--
+{{ Extended Mode Sections Start }}
+
 **Satisfies Quality Attributes:**
 - **QA-XX:** {{ Specific explanation of how this option satisfies this quality attribute }}
-- **QA-XX:** {{ Explanation }}
 
 **Addresses Constraints:**
 - **CON-XX:** {{ Specific explanation of how this option addresses this constraint }}
@@ -181,22 +190,13 @@ graph TB
 **Technology Stack:**
 - {{ Specific technology 1 - e.g., "MS SQL Server" not "database" }}
 - {{ Specific technology 2 - e.g., "React 18 with TypeScript" not "frontend framework" }}
-- {{ Specific technology 3 }}
 - {{ Additional technologies }}
--->
+
+{{ Extended Mode Sections End }}
 
 #### Option 1.2 - {{ Option Title }}
 
 {{ Same structure as Option 1.1 - detailed description of alternative approach }}
-
-**Architecture Diagram:**
-
-```mermaid
-graph TB
-    {{ Mermaid diagram for this option }}
-```
-
-<!-- EXTENDED MODE: Include QA/Constraint/Concern mappings, Technology Stack as shown in Option 1.1 -->
 
 #### Option Comparison
 
@@ -205,28 +205,12 @@ graph TB
 | OPT-1.1 | <ul><li>{{ Pro 1 }}</li><li>{{ Pro 2 }}</li></ul> | <ul><li>{{ Con 1 }}</li><li>{{ Con 2 }}</li></ul> | {{ Additional context }} |
 | OPT-1.2 | <ul><li>{{ Pro 1 }}</li><li>{{ Pro 2 }}</li></ul> | <ul><li>{{ Con 1 }}</li><li>{{ Con 2 }}</li></ul> | {{ Additional context }} |
 
-#### Decision & Rationale
-
-**Date:** {{ YYYY-MM-DD }}
-
-**Chosen Option:** {{ OPTION ID - e.g., OPT-1.1 }} - {{ Option Title }}
-
-**Rationale:**
-
-{{ Explanation including the following where relevant:
-- How the chosen option satisfies quality attributes (reference specific QA-XX)
-- Key trade-offs and why they are acceptable
-- How constraints are satisfied (reference specific CON-XX)
-- Risk mitigations
-- Alignment with design objectives
-}}
+{{ Extended Mode Sections Start }}
 
 #### Coverage Check
 
 **Iteration Goal Status:** {{ ✅ Achieved / ⚠️ Partially Achieved / ❌ Not Achieved }}
 
-<!-- EXTENDED MODE ONLY: Uncomment and complete the following section -->
-<!--
 **Peer Review:**
 - **Reviewed By:** {{ Name/Role }}, {{ Name/Role }}
 - **Review Date:** {{ YYYY-MM-DD }}
@@ -242,7 +226,8 @@ graph TB
 **Remaining Gaps:** {{ List any quality attributes, use cases, or concerns not yet fully addressed }}
 
 **Additional Iterations Needed:** {{ [ ] Yes - Specify why / [x] No }}
--->
+
+{{ Extended Mode Sections End }}
 
 ## Resources
 
@@ -250,6 +235,7 @@ graph TB
 
 - [ADD 3.0 Methodology](https://www.sei.cmu.edu/documents/2545/2018_010_001_513930.pdf)
 - {{ Link to PRD }}
-- {{ Link to technical specifications }}
+- {{ Link to technical specifications / standards }}
+- {{ Link to Threat Model }}
 - {{ Reference architecture examples }}
 - {{ Team documentation }}

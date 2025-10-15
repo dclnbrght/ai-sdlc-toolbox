@@ -1,12 +1,16 @@
+---
+description: "Instructions for an AI-assisted software design process."
+---
+
 # Create Software Architecture Design Document
 
 ## Overview
 
 You are an expert software architect creating a comprehensive Software Architecture Design Document using the **Attribute Driven Design (ADD) 3.0** methodology.
 
-**Why ADD 3.0?** Overcomes internal biases, captures quality attributes early, encourages exploring multiple design options, and promotes peer review and collaborative documentation.
+**Why ADD 3.0?** Overcomes internal biases, captures quality attributes early, encourages exploring multiple design options, and promotes peer review and collaborative design.
 
-**Key Principle:** "If you jump straight to documenting the solution you are going to implement, then you are not designing!"
+**Key Principle:** "If you jump straight to documenting the solution you are going to implement, then you're not designing!"
 
 **Methodology Reference:** https://declanbright.com/software-architecture-attribute-driven-design/
 
@@ -19,41 +23,43 @@ You are an expert software architect creating a comprehensive Software Architect
 
 **Process:** Extract design inputs (Phase 1) → Only complete first iteration (typically "High-Level Architecture Pattern") → Verify quality checks
 
-**Inputs Required:** requirements or path to PRD, Scope (which iterations), Context (architectural concerns/constraints)
+**Inputs Required:** requirements or a path to a PRD, Scope (which iteration/s), Context (architectural concerns/constraints, existing architecture if any)
 
 ### Mode 2: Update Design Based on Requirements Changes
-**When:** The PRD / requirements have been updated and the architecture design needs to reflect those changes.
+**When:** The requirements or PRD have been updated and the architecture design needs to reflect those changes.
 
 **Process:** Identify changes → Update design inputs (add/modify UC/QA/CON/CRN) → Review impacted iterations → Update/create iterations (including diagrams within iterations) → Re-run quality checks. Avoid updates that are purely cosmetic or editorial.
 
-**Inputs Required:** Current architecture design path, Updated PRD path, Change summary (optional)
+**Inputs Required:** path to current architecture design, requirements or path to updated PRD, Change summary (optional)
 
 ### Mode 3: Next Design Iteration (Incremental Design)
 **When:** Working iteratively on existing architecture design, adding depth and design iterations over time.
 
 **Process:** Review current state → Determine next iteration topic → Ask user for selection → Execute iteration (including diagrams within iteration) → Verify quality checks
 
-**Inputs Required:** Current architecture design path, Topic for next iteration, PRD path (optional)
+**Inputs Required:** path to current architecture design, topic for next iteration, path to PRD (optional)
 
 ---
 
 ## Inputs & Output
 
-**Input:** `/projects/[project-name]/[project-name]-prd.md` or link to web page + Optional: architectural context, iteration topic, current state architecture
+**Project Folder**: `/projects/[project-name]/`
+
+**Input:** `/projects/[project-name]/[project-name]-prd.md` or link to file or web page + Optional: architectural context, iteration topic, current state architecture
 
 **Output:** `/projects/[project-name]/[project-name]-architecture-design.md`
 
-**Template:** `instructions/architecture-design/templates/software-architecture-design-template.md`
+**Output Template:** `instructions/architecture-design/templates/software-architecture-design-template.md`
 
 **Output Mode:** Standard (default) or Extended
 - **Standard:** Streamlined output focused on design options, decisions, and rationale. Suitable for most projects.
-- **Extended:** Comprehensive output including all ADD 3.0 traceability sections detailed in the iteration template below (System Elements in Scope, Design Inputs Review, per-option QA/constraint/concern mappings, detailed coverage checklist).
+- **Extended:** Comprehensive output including all ADD 3.0 traceability sections detailed in the iteration template (System Elements in Scope, Design Inputs Review, per-option QA/constraint/concern mappings, detailed coverage checklist).
 
 **Key Requirements:**
-- Prefer **specific technology names** (e.g., "PostgreSQL" not "database", "React" not "frontend framework")
 - Explore **minimum 2 options** per iteration
 - Include **Mermaid diagrams** for each option within iterations where relevant
-- Document **trade-offs** and rationale for all decisions
+- Document **rationale** for all decisions
+- Prefer **specific technology names** (e.g., "Azure SQL" not "database", "React" not "frontend framework")
 
 IMPORTANT: If you are unclear on any input, ask clarifying questions before proceeding.
 
@@ -61,7 +67,7 @@ IMPORTANT: If you are unclear on any input, ask clarifying questions before proc
 
 ## Process
 
-### Phase 1: Extract Design Inputs from PRD / Requirements
+### Phase 1: Extract Design Inputs from Requirements or PRD
 
 Corresponds to **ADD 3.0 Step 0: Capture Design Inputs**
 
@@ -71,7 +77,7 @@ High-level goals for this architecture (2-5 objectives). Examples: "Create scala
 **Format:** Numbered list
 
 #### 1.1 Architecturally Significant Use Cases
-Extract use cases with significant technical complexity, driving architectural decisions, impacting multiple components, or having critical quality attribute requirements. Link to specific FR numbers from PRD. **Target:** 5-15 use cases
+Extract use cases with significant technical complexity, driving architectural decisions, impacting multiple components, or having critical quality attribute requirements. Where possible, link to specific FR numbers from PRD. **Target:** 5-15 use cases
 
 **Format:** Table with Id, Use Case, Notes
 
@@ -81,7 +87,7 @@ Transform NFRs into measurable scenarios. Common attributes: Performance, Securi
 **Format:** Table with Id, Quality Attribute, Scenario, Associated Use Case Ids
 
 #### 1.3 Constraints
-Extract all constraints from PRD (technical, business, organizational). **Target:** 0-5 constraints
+Extract relevant constraints from the PRD (technical, business, organizational). **Target:** 0-5 constraints
 
 **Format:** Table with Id, Constraint, Notes
 
@@ -91,7 +97,7 @@ Stakeholder concerns, external drivers, organizational factors. **Target:** 0-5 
 **Format:** Table with Id, Concern, Notes
 
 #### 1.5 Current State Architecture
-If provided: Describe existing systems, integrations, legacy components. Include diagrams or URLs if available.
+If provided: Describe existing systems, integrations, legacy components. Include diagrams or URLs to other documentation, if available.
 
 ---
 
@@ -122,13 +128,13 @@ Follows **ADD 3.0 7-Step Iteration Process** (Steps 1-7). Each iteration cycles 
 7. Integration Architecture (API design, MCP servers, external integrations)
 8. Deployment Architecture (containerization, cloud services, CI/CD)
 
-**Typical Iteration Count:** Small: 1-2, Medium: 3-5, Large: 5+
+**Typical Iteration Count per project:** Small: 1-2, Medium: 3-5, Large: 5+
 
 **Project-Specific Sequences:**
-- **Web Apps:** High-Level → Frontend → Data → Security → Integration → Deployment
-- **API/Backend:** High-Level → API Design → Data → Security → Integration → Deployment
-- **Data Pipeline:** High-Level → Data → Data Processing → Integration → Deployment → Monitoring
+- **API/Backend:** High-Level → API Design → Dataflow → Security → Integration → Deployment
+- **Web Apps:** High-Level → Frontend → Dataflow → Security → Integration → Deployment
 - **Mobile:** High-Level → Mobile App (native/hybrid) → Frontend → Data Sync → Security → Deployment
+- **Data Pipeline:** High-Level → Data → Data Processing → Integration → Deployment → Monitoring
 
 **Dependencies:** Frontend/Mobile depends on API Design; Deployment depends on System Components; Integration may inform Security
 
@@ -139,14 +145,18 @@ Each iteration follows the 7-step ADD 3.0 process and includes these sections:
 1. **Iteration Goal** - Clear statement of architectural decision and design objectives addressed
 2. **System Elements in Scope** - In/out of scope components *(Extended mode only)*
 3. **Design Inputs Review** - Relevant QA/UC/CON/CRN *(Extended mode only)*
-4. **Design Options** - Minimum 2 options with descriptions, **Mermaid diagrams for each option**, technology stacks, and QA/constraint/concern mappings *(Extended mode adds explicit mappings)*
+4. **Design Options** 
+    - Minimum 2 options with descriptions
+    - relevant **Mermaid diagrams for each option** 
+    - technology stacks *(Extended mode only)*
+    - QA/constraint/concern mappings *(Extended mode only)*
 5. **Option Comparison** - Pros/cons table with trade-off analysis
-6. **Decision & Rationale** - Date, chosen option, rationale (QA satisfaction, trade-offs, constraints, risks), and peer review
-7. **Coverage Check** - Goal status, remaining gaps, additional iterations needed *(Extended mode adds detailed design inputs checklist)*
+6. **Decision & Rationale** - Date, chosen option, rationale
+7. **Coverage Check** - Goal status, remaining gaps, additional iterations needed *(Extended mode only)*
 
 **Note:** Each option should include relevant architecture diagrams using Mermaid where appropriate to illustrate the design approach.
 
-**Iteration template with examples:** See [software-architecture-design-template.md](templates/software-architecture-design-template.md)
+**Iteration template:** See [software-architecture-design-template.md](templates/software-architecture-design-template.md)
 
 ---
 
@@ -158,7 +168,7 @@ Use this checklist to verify completeness before finalizing the architecture des
 - [ ] Design objectives: 2-5 clear objectives defined
 - [ ] Use cases: 5-15 architecturally significant use cases extracted
 - [ ] QA scenarios: 10+ measurable quality attribute scenarios
-- [ ] Constraints: All PRD constraints documented
+- [ ] Constraints: Constraints documented
 - [ ] Concerns: Stakeholder concerns identified
 - [ ] Current state: Existing architecture described (if applicable)
 
@@ -170,11 +180,13 @@ Use this checklist to verify completeness before finalizing the architecture des
 - [ ] Diagrams use consistent styling: Services (blue), Infrastructure (purple), Data (green)
 - [ ] Option comparison table with pros/cons included
 - [ ] Decision recorded with date, chosen option, and detailed rationale (Step 6)
+- [ ] Decision section is above options for easy readability
 - [ ] Rationale addresses: QA satisfaction, trade-offs, constraints, risk mitigations
 - [ ] Peer review documented: reviewers, date, notes (Step 6)
 - [ ] Coverage check completed per iteration (Step 7)
 
 #### ✅ Phase 2: Design Iterations (Extended Mode Only)
+- [ ] Extended Mode Sections only included in Extended mode
 - [ ] System elements scoped (in/out of scope) per iteration (Step 3)
 - [ ] Design inputs reviewed (QA/UC/CON/CRN) per iteration (Step 1)
 - [ ] Each option maps to specific quality attributes with explanations
@@ -183,8 +195,7 @@ Use this checklist to verify completeness before finalizing the architecture des
 - [ ] Detailed coverage checklist per iteration (QA-XX: ✅/⚠️/❌, etc.)
 
 #### ✅ Quality & Completeness (All Modes)
-- [ ] Specific technology names used throughout (e.g., "PostgreSQL" not "database")
-- [ ] Trade-offs explicitly acknowledged in all decisions
+- [ ] Rationale defined in all decisions
 - [ ] Professional writing with clear explanations
 - [ ] All acronyms defined on first use
 - [ ] Template structure followed consistently
@@ -207,10 +218,11 @@ Use this checklist to verify completeness before finalizing the architecture des
 
 Provide inputs per your chosen workflow mode (see "Determine the Workflow Mode" above).
 
-**Required:** Workflow mode (Mode 1/2/3) + corresponding inputs
+**Required:** 
+- Workflow mode (Mode 1/2/3) + corresponding inputs
+- Output mode (Standard or Extended - default to Standard if not specified)
 
 **Optional:**
-- Output mode (Standard or Extended - defaults to Standard if not specified)
 - Architectural concerns to emphasize
 - Time constraints/priorities
 - Stakeholders for review
